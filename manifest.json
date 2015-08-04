@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "TomeFlow",
+  "version": "0.0.1",
+  "description": "Keep track of how you spend your time on the web.",
+  "icons": { "16": "icon.png",
+              "48": "icon2.png",
+              "128": "icon2.png" },
+  "background": {
+    "scripts": [ "js/background.js"]
+  },
+  "offline_enabled": true,
+  "chrome_url_overrides" : {
+    "newtab": "newTab.html"
+  },
+  "permissions": [
+    "idle",
+    "tabs"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
