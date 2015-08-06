@@ -1,4 +1,4 @@
-var UPDATE_INTERVAL = 5;//sec
+var UPDATE_INTERVAL = 3;//sec
 var IDLE_TIME = 30;//sec
 var apps;
 

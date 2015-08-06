@@ -31,66 +31,67 @@ var x = d3.scale.linear()
     .domain([0, d3.max(apps, function(d) { return d.sumTime })])
     .range([0, 900]);
 
-var body = d3.select('body').style({'background-color': '#333'})
+var body = d3.select('body').style({'background-color': '#21231f'})
 
 
-var svg = d3.select('body').append('svg').attr({'width': 1250, 'height': 600}).style({'margin': '50px'});
+var svg = d3.select('body').append('svg').attr({'width': 1250, 'height': 500}).style({'margin': '0 auto', 'margin-top': '120px'});
 
 svg.selectAll('rect').data(apps).enter()
 	.append('rect')
 	.attr({'x': 200,
-				 'y': function(d, i) { return i * 25 },
+				 'y': function(d, i) { return i * 28 + 7},
 				 'width': function(d, i) { return x(d.sumTime) },
-				 'height': 22,
-				 'fill': 'steelblue',
+				 'height': 10,
+				 'fill': '#5297ff',
 				 'class': function(d, i) { return 'data' + i }
-	})
-	.on('mouseover', function(d, i) {
-		d3.select(this)
-			.transition()
-			.duration(50)
-			.attr('fill', '#4499da');
-
-		d3.select('text.data' + i)
-			.transition()
-			.duration(50)
-			.attr('fill', 'white')
-	})
-	.on('mouseout', function(d, i) {
-		d3.select(this)
-			.transition()
-			.duration(50)
-			.attr('fill', 'steelblue');
-
-		d3.select('text.data' + i)
-			.transition()
-			.duration(50)
-			.attr('fill', '#bbb')
 	});
+	// .on('mouseover', function(d, i) {
+	// 	d3.select(this)
+	// 		.transition()
+	// 		.duration(50)
+	// 		.attr('fill', 'white');
+
+	// 	d3.select('text.data' + i)
+	// 		.transition()
+	// 		.duration(50)
+	// 		.attr('fill', 'white')
+	// })
+	// .on('mouseout', function(d, i) {
+	// 	d3.select(this)
+	// 		.transition()
+	// 		.duration(50)
+	// 		.attr('fill', '#ccc');
+
+	// 	d3.select('text.data' + i)
+	// 		.transition()
+	// 		.duration(50)
+	// 		.attr('fill', '#adadad')
+	// });
 
 svg.selectAll('text.domain').data(apps).enter()
 	.append('text')
 	.text( function(d) { return d.domain })
 	.attr({
-		'x': 10,
-		'y': function(d, i) {return i * 25 + 14},
-		'fill': '#bbb',
-		'font-size': '12px',
+		'x': 180,
+		'y': function(d, i) {return i * 28 + 16},
+		'fill': '#adadad',
+		'font-size': '14px',
+		'text-anchor': 'end',
 		'class': function(d, i) { return 'data' + i }
-});
+	});
 
 svg.selectAll('text.sum-time').data(apps).enter()
 	.append('text')
 	.text( function(d) { 
-		var hh = d.hr > 0 ? d.hr + 'hr ' : '';
-		var mm = d.min > 0 ? d.min + 'min ' : '';
+		var hh = d.hr > 0 ? d.hr + ' hr ' : '';
+		var mm = d.min > 0 ? d.min + ' min ' : '';
 		var ss = d.sec > 0 ? d.sec + ' sec ' : '';
 		return  hh + mm + ss
 	})
 	.attr({
-		'x': function(d, i) {return x(d.sumTime) + 205},
-		'y': function(d, i) {return i * 25 + 14},
-		'fill': 'white',
-		'font-size': '12px',
+		'x': function(d, i) {return x(d.sumTime) + 210},
+		'y': function(d, i) {return i * 28 + 16},
+		'fill': '#adadad',
+		'font-size': '14px',
 		'class': function(d, i) { return 'data' + i }
 });
