@@ -19,7 +19,18 @@ function initial() {
     localStorage.setItem('apps', JSON.stringify({}));
   }
   apps = JSON.parse(localStorage.getItem('apps'));
+  // if(!localStorage.getItem('started')) {
+  //   console.log("no started time");
+  //   setStarted();
+  // }
 }
+// function setStarted() {
+//   var d = new Date();
+//   var date = [getFullYear(d), getMonth(d), getDate(d)];
+//   var dateStr = date[0] + '/' + date[1] + '/' + date[2];
+//   localStorage.setItem('started', dateStr);
+//   document.getElementById('started').innerHTML = dateStr;
+// }
 
 function update() {
   chrome.idle.queryState(IDLE_TIME, function(state) {
@@ -63,3 +74,6 @@ function extractDomain(url) {
 
 initial();
 setInterval(function() { update() }, UPDATE_INTERVAL * 1000);
+// document.getElementById('reset').addEventListener('click', function() {
+//   setStarted();
+// })

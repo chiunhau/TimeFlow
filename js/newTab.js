@@ -34,7 +34,7 @@ var x = d3.scale.linear()
 var body = d3.select('body').style({'background-color': '#21231f'})
 
 
-var svg = d3.select('body').append('svg').attr({'width': 1250, 'height': 500}).style({'margin': '0 auto', 'margin-top': '120px'});
+var svg = d3.select('body').append('svg').attr({'width': 1250, 'height': 500}).style({'margin': '0 auto', 'margin-top': '10px'});
 
 svg.selectAll('rect').data(apps).enter()
 	.append('rect')
@@ -42,7 +42,9 @@ svg.selectAll('rect').data(apps).enter()
 				 'y': function(d, i) { return i * 28 + 7},
 				 'width': function(d, i) { return x(d.sumTime) },
 				 'height': 10,
-				 'fill': '#5297ff',
+				 'rx': 5,
+				 'ry': 5,
+				 'fill': function(d, i){ return 'hsl(216, 100%, ' + (76 - 3 * i) + '%)'},
 				 'class': function(d, i) { return 'data' + i }
 	});
 	// .on('mouseover', function(d, i) {
@@ -74,7 +76,7 @@ svg.selectAll('text.domain').data(apps).enter()
 	.attr({
 		'x': 180,
 		'y': function(d, i) {return i * 28 + 16},
-		'fill': '#adadad',
+		'fill': '#6f6f6f',
 		'font-size': '14px',
 		'text-anchor': 'end',
 		'class': function(d, i) { return 'data' + i }
@@ -91,7 +93,7 @@ svg.selectAll('text.sum-time').data(apps).enter()
 	.attr({
 		'x': function(d, i) {return x(d.sumTime) + 210},
 		'y': function(d, i) {return i * 28 + 16},
-		'fill': '#adadad',
+		'fill': '#595959',
 		'font-size': '14px',
 		'class': function(d, i) { return 'data' + i }
 });
