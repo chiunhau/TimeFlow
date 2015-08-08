@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "TimeFlow",
-  "version": "0.0.5",
-  "description": "Keep track of how you spend your time on the web.",
+  "version": "0.0.9",
+  "description": "TimeFlow is a Chrome extension that tracks time you spend on every website.",
   "icons": { "16": "icon.png",
               "48": "icon.png",
               "128": "icon.png" },
@@ -17,5 +17,5 @@
     "idle",
     "tabs"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }

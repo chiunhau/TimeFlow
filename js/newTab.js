@@ -29,17 +29,17 @@ update();
 
 var x = d3.scale.linear()
     .domain([0, d3.max(apps, function(d) { return d.sumTime })])
-    .range([0, 900]);
+    .range([0, 700]);
 
 var body = d3.select('body').style({'background-color': '#21231f'})
 
 
-var svg = d3.select('body').append('svg').attr({'width': 1250, 'height': 500}).style({'margin': '0 auto', 'margin-top': '10px'});
+var svg = d3.select('body').append('svg').attr({'width': 1024, 'height': 450}).style({'margin': '0 auto', 'margin-top': '10px'});
 
 svg.selectAll('rect').data(apps).enter()
 	.append('rect')
-	.attr({'x': 200,
-				 'y': function(d, i) { return i * 28 + 7},
+	.attr({'x': 190,
+				 'y': function(d, i) { return i * 28 + 6},
 				 'width': function(d, i) { return x(d.sumTime) },
 				 'height': 10,
 				 'rx': 5,
@@ -47,37 +47,15 @@ svg.selectAll('rect').data(apps).enter()
 				 'fill': function(d, i){ return 'hsl(216, 100%, ' + (76 - 3 * i) + '%)'},
 				 'class': function(d, i) { return 'data' + i }
 	});
-	// .on('mouseover', function(d, i) {
-	// 	d3.select(this)
-	// 		.transition()
-	// 		.duration(50)
-	// 		.attr('fill', 'white');
-
-	// 	d3.select('text.data' + i)
-	// 		.transition()
-	// 		.duration(50)
-	// 		.attr('fill', 'white')
-	// })
-	// .on('mouseout', function(d, i) {
-	// 	d3.select(this)
-	// 		.transition()
-	// 		.duration(50)
-	// 		.attr('fill', '#ccc');
-
-	// 	d3.select('text.data' + i)
-	// 		.transition()
-	// 		.duration(50)
-	// 		.attr('fill', '#adadad')
-	// });
 
 svg.selectAll('text.domain').data(apps).enter()
 	.append('text')
 	.text( function(d) { return d.domain })
 	.attr({
-		'x': 180,
+		'x': 170,
 		'y': function(d, i) {return i * 28 + 16},
-		'fill': '#6f6f6f',
-		'font-size': '14px',
+		'fill': '#858585',
+		'font-size': '13px',
 		'text-anchor': 'end',
 		'class': function(d, i) { return 'data' + i }
 	});
@@ -91,9 +69,19 @@ svg.selectAll('text.sum-time').data(apps).enter()
 		return  hh + mm + ss
 	})
 	.attr({
-		'x': function(d, i) {return x(d.sumTime) + 210},
+		'x': function(d, i) {return x(d.sumTime) + 200},
 		'y': function(d, i) {return i * 28 + 16},
 		'fill': '#595959',
-		'font-size': '14px',
+		'font-size': '13px',
 		'class': function(d, i) { return 'data' + i }
 });
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-41951304-8']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
