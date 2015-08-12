@@ -43,18 +43,19 @@ function initial() {
     localStorage.setItem('apps', JSON.stringify({}));
   }
   apps = JSON.parse(localStorage.getItem('apps'));
-  // if(!localStorage.getItem('started')) {
-  //   console.log("no started time");
-  //   setStarted();
-  // }
+  if(!localStorage.getItem('start')) {
+    console.log("no started time");
+    reset();
+  }
 }
-// function setStarted() {
-//   var d = new Date();
-//   var date = [getFullYear(d), getMonth(d), getDate(d)];
-//   var dateStr = date[0] + '/' + date[1] + '/' + date[2];
-//   localStorage.setItem('started', dateStr);
-//   document.getElementById('started').innerHTML = dateStr;
-// }
+function reset() {
+  var d = new Date();
+  var date = [getFullYear(d), getMonth(d), getDate(d)];
+  var dateStr = date[0] + '/' + date[1] + '/' + date[2];
+  console.log(dateStr);
+  // localStorage.setItem('start', dateStr);
+  // document.getElementById('start').innerHTML = dateStr;
+}
 
 function update() {
   chrome.idle.queryState(IDLE_TIME, function(state) {
@@ -82,13 +83,13 @@ function update() {
 
 function extractDomain(url) {
   if (url.indexOf("file://") === 0) {
-    return "local_file"
+    return "localhost"
   }
   else {
     var link = document.createElement('a');
     link.href = url;
     if (link.hostname === "newtab") {
-      return "TimeFlow"
+      return "Time Flow"
     }
     else {
       return link.hostname
