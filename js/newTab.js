@@ -25,8 +25,31 @@ function update() {
 	apps = apps.slice(0, 20);
 }
 
+function showDate() {
+	if(localStorage.getItem('start')) {
+		document.getElementById('start').innerHTML = localStorage.getItem('start');
+	}
+}
+showDate()
 update();
 
+function reset() {
+  var d = new Date();
+  console.log(d);
+  localStorage.setItem('start', d);
+  localStorage.setItem('apps', JSON.stringify({}));
+  console.log(localStorage.getItem('apps'));
+  console.log(localStorage.getItem('d'));  
+  apps = {};
+  var bgPage = chrome.extension.getBackgroundPage();
+  bgPage.initial();
+  location.reload();
+
+}
+
+document.getElementById('reset').addEventListener('click', function() {
+  reset();
+})
 var x = d3.scale.linear()
     .domain([0, d3.max(apps, function(d) { return d.sumTime })])
     .range([0, 700]);
@@ -34,7 +57,7 @@ var x = d3.scale.linear()
 var body = d3.select('body').style({'background-color': '#21231f'})
 
 
-var svg = d3.select('body').append('svg').attr({'width': 1024, 'height': 450}).style({'margin': '0 auto', 'margin-top': '10px'});
+var svg = d3.select('#infographic').append('svg').attr({'width': 1024, 'height': 450}).style({'margin': '0 auto', 'margin-top': '10px'});
 
 svg.selectAll('rect').data(apps).enter()
 	.append('rect')

@@ -45,16 +45,7 @@ function initial() {
   apps = JSON.parse(localStorage.getItem('apps'));
   if(!localStorage.getItem('start')) {
     console.log("no started time");
-    reset();
   }
-}
-function reset() {
-  var d = new Date();
-  var date = [getFullYear(d), getMonth(d), getDate(d)];
-  var dateStr = date[0] + '/' + date[1] + '/' + date[2];
-  console.log(dateStr);
-  // localStorage.setItem('start', dateStr);
-  // document.getElementById('start').innerHTML = dateStr;
 }
 
 function update() {
@@ -99,6 +90,3 @@ function extractDomain(url) {
 
 initial();
 setInterval(function() { update() }, UPDATE_INTERVAL * 1000);
-// document.getElementById('reset').addEventListener('click', function() {
-//   setStarted();
-// })

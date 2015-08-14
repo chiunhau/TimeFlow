@@ -10,7 +10,6 @@
 				font-weight: 200;
 				letter-spacing: 0.4px;
 			}
-			
 			h1 {
 				font-size: 40px;
 				color: white;
@@ -19,11 +18,31 @@
 				color: #ccc;
 				font-weight: 100;
 			}
+			.date {
+				color: #aaa;
+				margin-top: 20px;
+			}
+			button {
+				background-color: transparent;
+				color: #aaa;
+			/*	border-color: #aaa;
+				border-style: solid;
+				border-radius: 5px;
+				border-width: 1px;*/
+				border: none;
+				cursor: pointer;
+			}
+			button:hover {
+				color: #ccc;
+				/*border-color: #ccc;*/
+			}
 			
 		</style>
 	</head>
 	<body>
 		<h1>Time Flow</h1>
+		<div id="infographic"></div>
+		<div class="date">Tracked from <i><span id="start"></span></i> <button id="reset">Reset</button></div>
 		<script src="js/d3.min.js"></script>
 		<script src="js/newTab.js"></script>
 		<script src="js/background.js"></script>
