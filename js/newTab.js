@@ -69,6 +69,21 @@ svg.selectAll('rect').data(apps).enter()
 				 'ry': 5,
 				 'fill': function(d, i){ return 'hsl(216, 100%, ' + (76 - 3 * i) + '%)'},
 				 'class': function(d, i) { return 'data' + i }
+	})
+	.on('click', function (d, i) {
+		window.location = 'http://' + d.domain;
+	})
+	.on('mouseover', function(d, i) {
+			d3.select(this)
+				.transition()
+				.duration(50)
+				.attr('fill', 'hsl(216, 100%, ' + (90 - 3 * i) + '%)');
+		})
+	.on('mouseout', function(d, i) {
+		d3.select(this)
+			.transition()
+			.duration(50)
+			.attr('fill', 'hsl(216, 100%, ' + (76 - 3 * i) + '%)');
 	});
 
 svg.selectAll('text.domain').data(apps).enter()
@@ -81,6 +96,21 @@ svg.selectAll('text.domain').data(apps).enter()
 		'font-size': '13px',
 		'text-anchor': 'end',
 		'class': function(d, i) { return 'data' + i }
+	})
+	.on('click', function (d, i) {
+		window.location = 'http://' + d.domain;
+	})
+	.on('mouseover', function(d, i) {
+			d3.select(this)
+				.transition()
+				.duration(50)
+				.attr('fill', '#ccc');
+		})
+	.on('mouseout', function(d, i) {
+		d3.select(this)
+			.transition()
+			.duration(50)
+			.attr('fill', '#858585');
 	});
 
 svg.selectAll('text.sum-time').data(apps).enter()
