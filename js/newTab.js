@@ -22,7 +22,7 @@ function loopOverApps(apps) {
 function update() {
 	apps = loopOverApps(JSON.parse(localStorage["apps"]));
 	apps.sort(function(a,b) { return b.sumTime - a.sumTime });
-	apps = apps.slice(0, 20);
+	apps = apps.slice(0, 15);
 }
 
 function showDate() {
@@ -57,7 +57,7 @@ var x = d3.scale.linear()
 var body = d3.select('body').style({'background-color': '#21231f'})
 
 
-var svg = d3.select('#infographic').append('svg').attr({'width': 1024, 'height': 450}).style({'margin': '0 auto', 'margin-top': '10px'});
+var svg = d3.select('#infographic').append('svg').attr({'width': 1024, 'height': 500}).style({'margin': '0 auto', 'margin-top': '10px'});
 
 svg.selectAll('rect').data(apps).enter()
 	.append('rect')
